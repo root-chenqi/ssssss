@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.GoodsMapper">
+	<sql id="goodsColumn">
+		good_id,good_name,good_price
+	</sql>
+	
+	<resultMap type="com.entity.Goods" id="goodsBaseMap">
+		<id column="good_id" property="goodsId"/>
+		<result column="good_name" property="goodsName"/>
+		<result column="good_price" property="goodsPrice"/>
+	</resultMap>
+	
+	<insert id="save" parameterType="com.entity.Goods">
+	insert into goods values(#{goodsId},#{goodsName},#{goodsPrice})
+	</insert>
+	<delete id="delete1" parameterType="com.entity.Goods">
+	delete from goods where good_id=#{goodsId}
+	</delete>
+	<update id="update1" parameterType="com.entity.Goods">
+	update goods set good_id=#{goodsId},good_name=#{goodsName},good_price=#{goodsPrice} where good_id=#{goodsId}
+	</update>
+	<select id="select1" resultMap="goodsBaseMap">
+	select * from goods
+	</select>
+</mapper>
